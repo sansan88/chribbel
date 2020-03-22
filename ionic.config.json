@@ -1,0 +1,7 @@
+{
+  "name": "chribbel",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
