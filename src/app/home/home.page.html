@@ -1,20 +1,73 @@
-<ion-header [translucent]="true">
+<!--<ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      chribbel ✍
     </ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header>-->
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true"  class="ion-padding">
+
+
+  <div class="container">
+
+    <ion-img class="logo" src="assets/icon-512x512.png"></ion-img>
+    <ion-text>
+      <h1>
+        <strong>
+          Bleibe zu Hause,<br>
+          aber in Kontakt mit Freund*innen.
+        </strong>
+      </h1>
+      <p>Privaten Video-Chat organisieren</p>
+      <miitmi-web-component invite="Einladen" video="Video-Chat starten"></miitmi-web-component>
+
+      <p>
+      Miitmi ist ein Projekt der Freiwilligen-Plattform <a href="https://www.hilf-jetzt.ch">hilf-jetzt.ch</a>. Für Video-Chats nutzen wir das Open-Source-Projekt <a href="https://jitsi.org/">jitsi.org</a>.
+      </p>
+
+    </ion-text>
+
+  </div>
+  <!--    </div>
+Footer without a border -->
+<ion-footer class="ion-no-border">
+  <ion-toolbar>  
+    <!--<ion-title>Footer - No Border</ion-title>-->
+      <ion-text color="primary">
+      <p>   <a href="https://stenciljs.com/">
+          <ion-icon name="logo-stencil"></ion-icon> stenciljs.com 
+      </a> | <a href="https://www.npmjs.com/package/miitmi-web-component">
+        <ion-icon name="logo-npm"></ion-icon> npmjs.com 
+      </a> | <a href="https://github.com/sansan88/miitmi">
+        <ion-icon name="logo-github"></ion-icon> github.com
+      </a> 
+    </p>
+    </ion-text>
+  </ion-toolbar>
+</ion-footer>
+
+
+
+
+
+
+
+
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">chribbel ✍</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-text>
+      <h1>Dokumente einfach signieren..</h1>
+    </ion-text>
+    <input type="file" (change)="uploadFile($event)" />
+    <div>{{ uploadPercent | async }}% hochgeladen</div>
+    <a [href]="downloadURL | async">{{ downloadURL | async }}</a>
+    <deckgo-qrcode content="{{qrCodeUrl}}" type="svg" cell-size="20"></deckgo-qrcode>
+    
   </div>
 </ion-content>

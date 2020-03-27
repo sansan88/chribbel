@@ -1,31 +1,44 @@
-#container {
-  text-align: center;
+ion-toolbar {
+  //--background-color: #EE2A24;
+  background-color: #EE2A24;
+}
 
-  position: absolute;
+.logo {
+  margin-top: 20px;
+  max-width: 100% !important;
+  height: 200px !important;
+}
+
+ion-text {
+  text-align: center !important;
+}
+
+ion-text a {
+  text-decoration: none !important;
+}
+
+ion-footer a {
+  text-decoration: none !important;
+}
+
+ion-footer p {
+  font-size: 12px;
+}
+
+ion-footer {
+  position: fixed;
   left: 0;
+  bottom: 0;
   right: 0;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.container{
+  margin-bottom: 40px;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+:host{
+  
+  --deckgo-qrcode-color-fill: #FFFFFF;
+  --deckgo-qrcode-size: 300px;
 }
 
-#container a {
-  text-decoration: none;
-}
-
-ion-content ion-toolbar {
-  --background: translucent;
-}
