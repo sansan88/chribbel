@@ -1,3 +1,4 @@
+import { ValidatePage } from './../validate/validate.page';
 import { Component, ViewChild  } from '@angular/core';
 
 import {ElementRef,Renderer2} from '@angular/core';
@@ -10,6 +11,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import 'firebase/storage';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { ModalController, IonRouterOutlet, Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -23,12 +25,21 @@ export class HomePage {
   uploadPercent: Observable<number>;
   downloadURL: Observable<string>;
 
-  constructor(private storage: AngularFireStorage) {}
+  constructor(
+    public plt: Platform,
+    private routerOutlet: IonRouterOutlet,
+    public modalController: ModalController,
+    private storage: AngularFireStorage
+    ) {
+
+  }
+
   uploadFile(event) {
     const file = event.target.files[0];
     console.log(file.name);
 
-    const filePath = 'dummyfile';
+    //const filePath = 'dummyfile.pdf';
+    const filePath = file.name;
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
 
@@ -39,13 +50,31 @@ export class HomePage {
         finalize( () => {
           fileRef.getDownloadURL().subscribe(downloadUrl=>{
             console.log(downloadUrl);
-            this.qrCodeUrl = downloadUrl;  
+
+            if (this.plt.is("mobile")) {
+              Browser.open({"url": "eidplus://did:eidplus:undefined/document?source=" + downloadUrl});
+              this.qrCodeUrl = downloadUrl;  
+            } else {
+              this.qrCodeUrl = downloadUrl;  
+            }
           });
           
          // this.qrCodeUrl = encodeURIComponent(String(this.downloadURL));
 
         })     )
     .subscribe()
+  }
+
+  async validieren(){
+
+    const modal = await this.modalController.create({
+      component: ValidatePage,
+      swipeToClose: true,
+      presentingElement: this.routerOutlet.nativeEl
+    });
+    return await modal.present();
+    
+
   }
 
 }

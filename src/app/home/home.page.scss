@@ -32,13 +32,28 @@ ion-footer {
   right: 0;
 }
 
-.container{
+.container {
   margin-bottom: 40px;
+  text-align: center !important;
 }
 
-:host{
-  
-  --deckgo-qrcode-color-fill: #FFFFFF;
+:host {
   --deckgo-qrcode-size: 300px;
+  --deckgo-qrcode-color-fill: #000000;
 }
 
+@media (prefers-color-scheme: dark) {
+  :host {
+    --deckgo-qrcode-color-fill: #FFFFFF;
+  }
+}
+
+
+#fileInput {
+  display: none;
+}
+
+
+.container ion-icon {
+  font-size: 300px;
+}
